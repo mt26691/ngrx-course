@@ -1,12 +1,13 @@
 import {
-  ActionReducer,
-  ActionReducerMap,
-  createFeatureSelector,
-  createSelector,
-  MetaReducer
+    ActionReducer,
+    ActionReducerMap,
+    createFeatureSelector,
+    createSelector,
+    MetaReducer,
+    State
 } from '@ngrx/store';
 import { environment } from '../../environments/environment';
-import {routerReducer} from '@ngrx/router-store';
+import { routerReducer } from '@ngrx/router-store';
 
 export interface AppState {
 
@@ -16,7 +17,11 @@ export const reducers: ActionReducerMap<AppState> = {
     router: routerReducer
 };
 
-export function logger(reducer:ActionReducer<any>)
+
+
+const courses = [];
+
+export function logger(reducer: ActionReducer<any>)
     : ActionReducer<any> {
     return (state, action) => {
         console.log("state before: ", state);
