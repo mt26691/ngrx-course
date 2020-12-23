@@ -8,23 +8,11 @@ import { CoursesHttpService } from "./services/courses-http.service";
 @Injectable()
 export class CoursesEffect {
 
-    // login$ = createEffect(() => this.action$.pipe(ofType(AuthActions.login), tap(action => {
-    //     localStorage.setItem('user', JSON.stringify(action.user));
-    // })), { dispatch: false });
-
     loadCourses$ = createEffect(() => this.action$.pipe(ofType(CourseActions.loadAllCourses), concatMap(action => this.coursesHttpService.findAllCourses()),
         map(courses => CourseActions.allCoursesLoaded({ courses: courses }))));
 
+    saveCourse$ = createEffect(() => this.action$.pipe(ofType(CourseActions.courseUpdated), concatMap(action => this.coursesHttpService.saveCourse(action.update.id, action.update.changes))), { dispatch: false });
+
     constructor(private action$: Actions, private router: Router, private coursesHttpService: CoursesHttpService) {
-
-        // // createEffect(() => this.action$.pipe(ofType(AuthActions.login), tap(action => {
-        // //     localStorage.setItem('user', JSON.stringify(action.user));
-        // // })));
-
-        // // const login$ = this.action$.pipe(ofType(AuthActions.login), tap(action => {
-        // //     localStorage.setItem('user', JSON.stringify(action.user));
-        // // }));
-
-        // // login$.subscribe();
     }
 }
