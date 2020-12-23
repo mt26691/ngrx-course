@@ -68,6 +68,7 @@ const routes: Routes = [
       logOnly: environment.production, // Restrict extension to log-only mode
     }),
     EffectsModule.forRoot([]),
+    EntityDataModule.forRoot({}),
     StoreRouterConnectingModule.forRoot({
       stateKey: 'router',
       routerState: RouterState.Minimal
